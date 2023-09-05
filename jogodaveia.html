@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Phudu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            font-family: 'Phudu', cursive;
+            background: linear-gradient(300deg, rgb(40, 40, 200), rgb(252, 138, 7));
+            display: flex;
+            justify-content: center;
+        }
+
+        h1 {
+            color: white;
+            font-size: 80px;
+            margin: 5px;
+            position: relative;
+            display: block;
+        }
+
+        .divisor{
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 52%;
+            left: 50%;
+        }
+
+        .caixas {
+            background-color: white;
+            border: red solid 8px;
+            border-radius: 10%;
+            height: 20vmin;
+            width: 20vmin;
+        }
+
+        .maincontainer {
+            width: 70vmin;
+            height: 70vmin;
+            flex-wrap: wrap;
+            display: flex;
+            gap: 2vmin;
+        }
+
+        #resetar {
+            border: aqua 2px solid;
+            border-radius: 8px;
+            color: aqua;
+            background-color: rgb(10, 10, 45);
+            margin-top: 30px;
+            padding: 15px;
+            font-size: 44px;
+            margin: 30px auto;
+            position: relative;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-family: 'Phudu', cursive;">Jogo da velha</h1>
+    <div class="divisor">
+        <div class="maincontainer">
+            <div class="caixas"></div>
+            <div class="caixas"></div>
+            <div class="caixas"></div>
+            <div class="caixas"></div>
+            <div class="caixas"></div>
+            <div class="caixas"></div>
+            <div class="caixas"></div>
+            <div class="caixas"></div>
+            <div class="caixas"></div>
+        </div>
+        <button id="resetar">Reiniciar</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
