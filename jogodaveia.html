@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Phudu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            justify-content: center;
+        }
+
+        #pabtn {
+            border: 2px solid aqua;
+            border-radius: 8px;
+            background-color: rgb(10, 10, 45);
+            color: aqua;
+            font-size: 22px;
+        }
+
+        #pabtn:hover {
+            background-color: rgb(15, 15, 67.5);
+        }
+
+        .modal-content {
+            background-color: rgb(10, 10, 45);
+            border: 3px solid aqua;
+            border-radius: 8px;
+            color: aqua;
+            width: 450px;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            margin: 15% auto;
+            padding: 20px;
+            text-align: center;
+            align-items: center;
+            animation-name: appear;
+            animation-duration: 0.7s;
+        }
+
+        @keyframes appear {
+            from {
+                margin-top: -10%;
+                opacity: 0;
+            }
+            to {
+                margin-top: 15%;
+                opacity: 1;
+            }
+        }
+
+        body {
+            font-family: 'Phudu', cursive;
+            background-image: linear-gradient(100deg, rgb(10, 10, 45), rgb(30, 30, 135));
+            display: flex;
+            justify-content: center;
+        }
+
+        #idessay {
+            position: relative;
+            right: -650px;
+            top: 12px;
+            height: 50px;
+            width: auto;
+            cursor: pointer;
+            transition: right 0.8s ease-out;
+            border-radius: 50%;
+        }
+
+        #idessay:hover {
+            background-color: blue;
+        }
+
+        h1 {
+            color: aquamarine;
+            font-size: 80px;
+            margin: 5px;
+            position: relative;
+            display: block;
+        }
+
+        h2 {
+            font-size: 40px;
+        }
+
+        #infoSector {
+            position: fixed;
+            top: 0;
+            right: -380px;
+            width: 300px;
+            height: 100%;
+            background-color: rgb(10, 10, 45);
+            color: #fff;
+            transition: right 0.8s ease-out;
+            padding: 40px;
+            font-size: 22px;
+            display: flex;
+            justify-content: start;
+            flex-direction: column;
+        }
+
+        .divisor{
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 60%;
+            left: 50%;
+        }
+
+        .caixas {
+            background-color: rgb(15, 15, 67.5);
+            border: aquamarine solid 8px;
+            border-radius: 10%;
+            height: 20vmin;
+            width: 20vmin;
+            font-size: 12vmin;
+            color: aquamarine;
+            font-weight: 900;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .maincontainer {
+            width: 70vmin;
+            height: 70vmin;
+            flex-wrap: wrap;
+            display: flex;
+            gap: 2vmin;
+            position: relative;
+        }
+
+        #resetar {
+            border: aqua 4px solid;
+            border-radius: 8px;
+            color: aqua;
+            background-color: rgb(10, 10, 45);
+            margin-top: 30px;
+            padding: 15px;
+            font-size: 44px;
+            margin: 30px auto;
+            position: relative;
+            display: block;
+            margin-bottom: 150px;
+        }
+
+        footer {
+            text-align: center;
+            padding-bottom: 30px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 35px;
+            background-color: rgb(10, 10, 45);
+        }
+
+        #neon {
+            background-color: aqua;
+            box-shadow: 1px 1px 1px 1px aqua;
+            border-radius: 8px;
+            height: 1px;
+            width: 1400px;
+            animation: neonslide 7s linear infinite;
+        }
+
+        @keyframes neonslide {
+            from {
+                margin-left: -120%;
+            }
+            to {
+                margin-left: 110%;
+            }
+        }
+
+        #neonbox {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        li {
+            list-style:disc;
+            margin-bottom: 7px;
+        }
+
+        a {
+            color: lightskyblue;
+        }
+
+        a:hover {
+            color: aqua;
+        }
+
+        a:active {
+            color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-family: 'Phudu', cursive;">Jogo da velha</h1>
+    <div class="divisor">
+        <div class="maincontainer">
+            <div id="cell1" class="caixas cell"></div>  <!--1x1-->
+            <div id="cell2" class="caixas cell"></div>  <!--1x2-->
+            <div id="cell3" class="caixas cell"></div>  <!--1x3-->
+            <div id="cell4" class="caixas cell"></div>  <!--2x1-->
+            <div id="cell5" class="caixas cell"></div>  <!--2x2-->
+            <div id="cell6" class="caixas cell"></div>  <!--2x3-->
+            <div id="cell7" class="caixas cell"></div>  <!--3x1-->
+            <div id="cell8" class="caixas cell"></div>  <!--3x2-->
+            <div id="cell9" class="caixas cell"></div>  <!--3x3-->
+        </div>
+        <button id="resetar" onclick="restart()">Reiniciar</button>
+        <div id="gameEnd" class="modal">
+            <div class="modal-content">
+                <h2 id="gotxt">O jogo acabou, o vencedor foi</h2>
+                <button id="pabtn" onclick="fechaGameEnd();">Jogar de volta</button>
+            </div>
+        </div>
+    </div>
+
+    <img src="infobtn.png" id="idessay">
+    <div id="infoSector">
+        <h2> Fontes: </h2>
+        <br>
+        <ul>
+            <li><a href="https://youtu.be/al_AgC2NSCo?si=mZlu5xJLiNoT0nIo">https://youtu.be/al_AgC2NSCo?si=mZlu5xJLiNoT0nIo</a></li>
+            <li><a href="https://youtu.be/trKjYdBASyQ?si=Wsb7GTqAQX-z5R_M">https://youtu.be/trKjYdBASyQ?si=Wsb7GTqAQX-z5R_M</a></li>
+            <li><a href="https://youtu.be/fPew9OI2PnA?si=JkTAg74ioONJkuEV">https://youtu.be/fPew9OI2PnA?si=JkTAg74ioONJkuEV</a></li>
+            <li><a href="https://www.w3schools.com/">https://www.w3schools.com/</a></li>
+            <li>Pequenos auxílios de Inteligências Artificiais</li>
+        </ul>
+    </div>  
+    <footer style="color: aqua;">
+        <div id="neon-box">
+            <div id="neon"></div>
+        </div>
+        <p style="margin-top: 30px;">Jogo produzido pelo aluno do 1°MB Mateus Cunha, devido ao 3° trimestre letivo.</p>
+    </footer> 
+    <script>
+        const cells = Array.from(document.querySelectorAll('.cell'));
+        let currentPlayer = 'X';
+        const gameEnd = document.getElementById("gameEnd");
+
+        function abreGameEnd(){
+            gameEnd.style.display = "block";
+        }
+
+        function fechaGameEnd(){
+            gameEnd.style.display = "none";
+            restart();
+        }
+
+        function checkWinner() {
+            const winningCombos = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
+
+            for (let combo of winningCombos) {
+                const [a, b, c] = combo;
+                if (cells[a].textContent && cells[a].textContent === cells[b].textContent && cells[a].textContent === cells[c].textContent) {
+                    return cells[a].textContent;
+                }
+            }
+
+            if (!cells.some(cell => !cell.textContent)) {
+                return 'Empate';
+            }
+
+            return null;
+        }
+
+        function cellClick(cell) {
+            if (!cell.textContent && !checkWinner()) {
+                cell.textContent = currentPlayer;
+                const winner = checkWinner();
+                if (winner) {
+                    if (winner === 'Empate') {
+                        abreGameEnd();
+                        document.getElementById("gotxt").innerHTML = "O jogo empatou";
+                    } else {
+                        abreGameEnd();
+                        document.getElementById("gotxt").innerHTML = "O jogo acabou, o vencedor foi " + winner;
+                    }
+                } else {
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                }
+            }
+        }
+
+        cells.forEach(cell => {
+            cell.addEventListener('click', () => cellClick(cell));
+        });
+
+        function restart(){
+            cells.forEach(cell => {
+                cell.textContent = '';
+            });
+        }
+
+        //Barra lateral
+
+        let infoSector = document.getElementById("infoSector");
+        let idessay = document.getElementById("idessay")
+
+        idessay.addEventListener('click', () => {
+            if (infoSector.style.right == "-380px"){
+                infoSector.style.right = "0px";
+                idessay.style.right = "-270px"
+            } else {
+                infoSector.style.right = "-380px";
+                idessay.style.right = "-650px"
+            }
+        })
+    </script>
+</body>
+</html>
